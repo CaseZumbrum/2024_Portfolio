@@ -20,8 +20,12 @@
     font-size: 1rem;
     color: rgb(215, 186, 125);
 }
+.post__content h2 {
+    margin-bottom: 0px;
+}
 .post__time {
     font-size: .9rem;
+    color: #c586c0;
 }
 
 .post__info{
