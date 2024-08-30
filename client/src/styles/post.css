@@ -1,0 +1,41 @@
+.post{
+    display: grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap: 20px;
+    max-width: 600px;
+    min-width: 20%;
+    background-color: #202020;
+    border-radius: 10px;
+    transition: transform .2s; /* Animation */
+    padding: 20px;
+    border: 1px solid #404040
+  }
+
+  .post:hover{
+    transform: scale(1.1)
+  }
+
+.post__content {
+    margin:0;
+    font-size: 1rem;
+    color: rgb(215, 186, 125);
+}
+.post__time {
+    font-size: .9rem;
+}
+
+.post__info{
+    color: rgb(197, 134, 192);
+    font-size: 1.3rem;
+    display: flex;
+    gap: 10px;
+}
+
+.post__summary{
+    line-height: 1.3rem;
+    color: rgb(156, 220, 254);
+}
+
+.post__image img{
+    max-width: 300px;
+}
