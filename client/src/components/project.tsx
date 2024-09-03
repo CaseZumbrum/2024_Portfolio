@@ -1,8 +1,8 @@
-import "../styles/post.css";
+import "../styles/project.css";
 import project from '../types/project';
-export default function Post({ title, body, img, link, time }: project) {
+export default function Project({ title, body, img, link, time }: project) {
   return (
-    <div className="post">
+    <div className="project">
       <div className="post__image">
         <img src={img}></img>
       </div>

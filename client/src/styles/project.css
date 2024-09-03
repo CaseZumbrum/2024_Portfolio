@@ -1,4 +1,4 @@
-.post{
+.project{
     display: grid;
     grid-template-columns:0.9fr 1.1fr;
     gap: 20px;
@@ -11,7 +11,7 @@
     border: 1px solid #404040
   }
 
-  .post:hover{
+  .project:hover{
     transform: scale(1.1)
   }
 

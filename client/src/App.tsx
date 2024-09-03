@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Post from './components/post';
+import Project from './components/project';
 import project from './types/project';
 
 function App() {
-  const [posts, setPosts] = useState<project[]>([]);
+  const [projects, setProjects] = useState<project[]>([]);
   useEffect(() => {
     fetch("http://www.casezumbrum.com/posts").then((response) => {
-      console.log(window.location.host);
-      response.json().then((posts) => {
-        setPosts(posts);
+      response.json().then((projects) => {
+        setProjects(projects);
       });
     });
   }, []);
@@ -27,7 +26,7 @@ function App() {
           <span style={{ color: "rgb(255, 215, 10)" }}>{")"}</span> stack{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>{"portfolio"}</span> site
           for all of my{" "}
-          <span style={{ color: "rgb(86, 156, 214)" }}>{"projects__content"}</span>!
+          <span style={{ color: "rgb(86, 156, 214)" }}>{"projects"}</span>!
           Currently running on{" "}
           <span style={{ color: "rgb(78, 201, 176)" }}>{"AWS Lightsail"}</span>{" "}
           and using{" "}
@@ -118,8 +117,8 @@ function App() {
           <span>Projects</span>
         </div>
         <div className="projects__content">
-          {posts.map((post) => (
-            <Post {...post} />
+          {projects.map((project) => (
+            <Project {...project} />
           ))}
         </div>
       </div>
