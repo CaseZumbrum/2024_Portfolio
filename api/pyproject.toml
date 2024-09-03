@@ -7,8 +7,7 @@ build-backend = "setuptools.build_meta"  # If not defined, then legacy behavior 
 
 [project]
 
-name = "2024_Portfolio" 
-
+name = "Portfolio" 
 version = "0.0.0" 
 description = "A sample Python project"
 
