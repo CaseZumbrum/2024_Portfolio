@@ -3,6 +3,8 @@ from motor import motor_asyncio
 from Portfolio.config import config
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+import pathlib
 
 app = FastAPI()
 
@@ -55,3 +57,15 @@ async def get_work():
     return WorkList(
         jobs=await work_collection.find().sort("time", -1).to_list(100)
     ).jobs
+
+
+app.mount(
+    "/",
+    StaticFiles(
+        directory=pathlib.Path(__file__)
+        .parent.resolve()
+        .joinpath("../../../client/dist"),
+        html=True,
+    ),
+    name="site",
+)
