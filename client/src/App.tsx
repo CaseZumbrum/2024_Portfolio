@@ -1,22 +1,48 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import Job from './components/Job';
 import Project from './components/project';
+import Scroll_Banner from './components/Scroll_Banner';
+import job from './types/job';
 import project from './types/project';
 
 function App() {
   const [projects, setProjects] = useState<project[]>([]);
+  const [jobs, setJobs] = useState<job[]>([])
+  const [title, setTitle] = useState<string>("Case Zumbrum's Portfolio")
+  const [image, setImage] = useState<string>("/static/images/case.png")
   useEffect(() => {
-    fetch("http://www.casezumbrum.com/posts").then((response) => {
+    fetch("http://www.localhost:8000/projects").then((response) => {
       response.json().then((projects) => {
+        console.log(projects)
         setProjects(projects);
+      });
+    });
+
+    fetch("http://www.localhost:8000/work").then((response) => {
+      response.json().then((jobs) => {
+        console.log(jobs)
+        setJobs(jobs);
       });
     });
   }, []);
 
+  const reveal_secret = () => {
+    if (title == "Case Zumbrum's Portfolio") {
+      setTitle("Cat Zumbrum's Portfolio");
+      setImage("/cat.jpg")
+    }
+    else {
+      setTitle("Case Zumbrum's Portfolio");
+      setImage("/static/images/case.png")
+    }
+  }
   return (
     <div className="app">
       <div className="header">
-        <div className="header__title">Case Zumbrum's Portfolio</div>
+        <div className="header__title" onClick={reveal_secret}>
+          {title}
+        </div>
         <div className="header__desc">
           A <span style={{ color: "rgb(78, 201, 176)" }}>{"MERN"}</span>{" "}
           <span style={{ color: "rgb(255, 215, 10)" }}>{"("}</span>
@@ -37,7 +63,7 @@ function App() {
       </div>
       <div className="intro">
         <div className="intro__me">
-          <img src="/cat.jpg"></img>
+          <img src={image}></img>
           <div className="me__links">
             <a
               className="profileLink"
@@ -112,6 +138,21 @@ function App() {
           <span style={{ color: "rgb(255, 181, 24)" }}>{"}"}</span>
         </div>
       </div>
+      <div className='work'>
+        <div className='work__title'>
+          <span>Work Experience</span>
+        </div>
+        <div className='work__content'>
+          {jobs.map((job) => (
+            <Job {...job}></Job>
+          ))}
+        </div>
+      </div>
+      <div className="skills">
+        <div className='skills__title'>Skills</div>
+        <Scroll_Banner></Scroll_Banner>
+      </div>
+
       <div className="projects">
         <div className="projects__title">
           <span>Projects</span>
@@ -122,6 +163,7 @@ function App() {
           ))}
         </div>
       </div>
+
     </div>
   );
 }

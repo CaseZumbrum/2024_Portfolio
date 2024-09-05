@@ -36,10 +36,10 @@
 }
 
 .post__summary{
-    line-height: 1.3rem;
+    line-height: 1.2rem;
     color: rgb(156, 220, 254);
 }
 
 .post__image img{
-    max-width: 300px;
+    width: 250px;
 }

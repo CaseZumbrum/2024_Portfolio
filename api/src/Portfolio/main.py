@@ -2,11 +2,34 @@ from fastapi import FastAPI
 from motor import motor_asyncio
 from Portfolio.config import config
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 client = motor_asyncio.AsyncIOMotorClient(config.MONGO_URL)  # type:ignore
 db = client.get_database("content")
-project_collection = db.get_collection("posts")
+project_collection = db.get_collection("projects")
+work_collection = db.get_collection("work")
+
+
+class WorkModel(BaseModel):
+    company: str
+    time: str
+    description: str
+    image: str
+
+
+class WorkList(BaseModel):
+    jobs: list[WorkModel]
 
 
 class ProjectModel(BaseModel):
@@ -20,6 +43,15 @@ class ProjectList(BaseModel):
     projects: list[ProjectModel]
 
 
-@app.get("/")
-async def get_root():
-    return ProjectList(projects=await project_collection.find().to_list(100))
+@app.get("/projects")
+async def get_projects():
+    return ProjectList(
+        projects=await project_collection.find().sort("time", -1).to_list(100)
+    ).projects
+
+
+@app.get("/work")
+async def get_work():
+    return WorkList(
+        jobs=await work_collection.find().sort("time", -1).to_list(100)
+    ).jobs
