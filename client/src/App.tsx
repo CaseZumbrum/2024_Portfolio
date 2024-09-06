@@ -12,14 +12,14 @@ function App() {
   const [title, setTitle] = useState<string>("Case Zumbrum's Portfolio")
   const [image, setImage] = useState<string>("/static/images/case.png")
   useEffect(() => {
-    fetch("http://www.localhost:8000/projects").then((response) => {
+    fetch(import.meta.env.VITE_API + "/projects").then((response) => {
       response.json().then((projects) => {
         console.log(projects)
         setProjects(projects);
       });
     });
 
-    fetch("http://www.localhost:8000/work").then((response) => {
+    fetch(import.meta.env.VITE_API + "/work").then((response) => {
       response.json().then((jobs) => {
         console.log(jobs)
         setJobs(jobs);
