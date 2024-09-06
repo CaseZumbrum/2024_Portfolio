@@ -12,8 +12,12 @@
       hsl(0 0% 0% / 1) 80%,
       hsl(0 0% 0% / 0)
     );
+    transition: transform .2s; /* Animation */
   }
-  
+  .marquee:hover{
+    transform: scale(1.05)
+  }
+
   .marquee--8 {
     --marquee-item-width: 100px;
     --marquee-item-height: 100px;
