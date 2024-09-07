@@ -16,7 +16,6 @@ export default function Project({ title, body, img, link, time }: project) {
           <time>{time}</time>
         </span>
         <p className="post__summary" style={{ fontSize: .85 + 10 / body.length + "rem" }}>{body}</p>
-        {{ link }.link != null && <a href={link}>Link</a>}
         <h2>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"}"}</span>
         </h2>
