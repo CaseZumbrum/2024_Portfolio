@@ -74,8 +74,9 @@
 }
 
 .intro__description {
+  flex: 0 1 auto;
   color : #9cdcfe;
-  width:50%;
+  width: 500px;
   font-size: 1.3rem;
 }
 
