@@ -81,7 +81,7 @@ function App() {
             </a>
             <a
               className="profileLink"
-              href="https://docs.google.com/document/d/1MOTXNbck3oeZoYUyFrlqaqhfbghRPDtDoLcmGVzJUS0/edit?usp=sharing"
+              href="https://docs.google.com/document/d/1MOTXNbck3oeZoYUyFrlqaqhfbghRPDtDoLcmGVzJUS0/pub"
               target="_blank"
             >
               Resume
