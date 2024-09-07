@@ -34,7 +34,7 @@
 }
 
 .intro {
-  width:100%;
+  width:100vw;
   border-bottom: 2px solid #2b2b2b;
   display: flex;
   flex-flow: row;
