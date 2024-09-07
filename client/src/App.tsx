@@ -11,6 +11,7 @@ function App() {
   const [jobs, setJobs] = useState<job[]>([])
   const [title, setTitle] = useState<string>("Case Zumbrum's Portfolio")
   const [image, setImage] = useState<string>("/static/images/case.png")
+  const a: HTMLAudioElement = new Audio("/meow.mp3");
   useEffect(() => {
     fetch(import.meta.env.VITE_API + "/projects").then((response) => {
       response.json().then((projects) => {
@@ -31,6 +32,7 @@ function App() {
     if (title == "Case Zumbrum's Portfolio") {
       setTitle("Cat Zumbrum's Portfolio");
       setImage("/cat.jpg")
+      a.play();
     }
     else {
       setTitle("Case Zumbrum's Portfolio");
@@ -44,12 +46,12 @@ function App() {
           {title}
         </div>
         <div className="header__desc">
-          A <span style={{ color: "rgb(78, 201, 176)" }}>{"MERN"}</span>{" "}
-          <span style={{ color: "rgb(255, 215, 10)" }}>{"("}</span>
+          A <span style={{ color: "rgb(78, 201, 176)" }}>{"FastAPI"}</span>{", "}
+          <span style={{ color: "#d7ba7d" }}>{"MongoDB"}</span>{", and "}
           <span style={{ color: "rgb(197, 134, 192)" }}>
-            {"MongoDB, Express, React, NodeJs"}
+            {"React "}
           </span>
-          <span style={{ color: "rgb(255, 215, 10)" }}>{")"}</span> stack{" "}
+          stack{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>{"portfolio"}</span> site
           for all of my{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>{"projects"}</span>!
