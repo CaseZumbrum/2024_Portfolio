@@ -36,6 +36,7 @@
 @media screen and (max-width: 600px) {
   .header__desc {
     visibility: hidden;
+    position: absolute;
   }
 }
 
