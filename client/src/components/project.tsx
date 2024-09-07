@@ -2,7 +2,7 @@ import "../styles/project.css";
 import project from '../types/project';
 export default function Project({ title, body, img, link, time }: project) {
   return (
-    <div className="project" onClick={()=>{link?(window.location.href = link):null}} style={{cursor:link?"pointer":"inherit"}}>
+    <div className="project" onClick={()=>{link?(window.open(link, "_blank")):null}} style={{cursor:link?"pointer":"inherit"}}>
       <div className="post__image">
         <img src={img}></img>
       </div>

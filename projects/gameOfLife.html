@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<head>
+<style>
+ div.fixed {
+  position: fixed;
+  top: 10px;
+  left: 20px;
+  width: 80;
+  border: 3px solid #050505;
+  z-index: 2;
+} 
+div.center{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"> // Using JQuery functions</script> 
+<script>
+$(function(){
+  //Credit to John Conway, the creator of the model "Conway's Game of Life"
+
+  // myCanvas stores the canvas object that the user interacts with
+  // top left corner of canvas is x,y = 0,0
+  // a dead cell is represented by a white section
+  // an alive cell is represented by a black section
+  const myCanvas = document.createElement("canvas"); 
+
+  // gameboard variable assignment
+  const cellSize = 15; // Length and Width of each cell
+  const cellCount = 100; // number of cells in each direction, total cell number = cellcount^2
+  const borderSize = 1; // border width of the board
+
+  // The board array is used to store the gameboard, its length/width is two larger than the cellcount in order to create an outer barrier, necessary to avoid calling out of bounds indexes. Coordinates are in the form [y,x]
+  let board = Array.from(Array(cellCount + 2), () => Array(cellCount + 2).fill(0)); // Sourced from stack overflow. Creates board to be filled with zeros
+
+  myCanvas.width = (cellSize + borderSize) * cellCount + borderSize; // defines the height and width of the canvas based on the cellCount, cellSize, and border size
+  myCanvas.height = (cellSize + borderSize) * cellCount + borderSize;
+  myCanvas.style.position = "absolute";
+  myCanvas.style.zIndex = "1";
+
+  document.body.appendChild(myCanvas); // Adds canvas to the html body tag
+
+  let intervalID = 0; // Used to store the current id of the interval used to play generations, 0 if there is not current interval
+  let drawFlag = 0; // Stores whether the mouse is currently pressed down, 1 for yes, 0 for no
+
+  const ctx = myCanvas.getContext('2d'); // canvas context is used to get call functions for the canvas
+
+  ctx.fillStyle = 'rgb(64,64,64)'; // dark grey for borderlines
+
+  for(let i = 0; i < cellCount + 1; i++){ // loop draws borderlines of the board, based on gameboard variables
+    ctx.fillRect(0,i*(cellSize + borderSize),myCanvas.width,borderSize);
+    ctx.fillRect(i*(cellSize + borderSize),0,borderSize,myCanvas.height);
+  }
+  ctx.fillStyle = '#000'; // reset to black fill, prepares board to be drawn on
+
+  // when the mouse pushes down on the canvas, begin drawing
+  $("canvas").mousedown(function(e){
+    drawFlag = 1;
+    fillCellClick(e); // This allows the first click to immediately fill or erase the current square on a mousedown event
+  });
+
+  // when the mouse is let up on the canvas, stop drawing
+  $("canvas").mouseup(function(){
+    drawFlag = 0;
+  });
+
+  // when the mouse moves on the canvas, if the mouse is curently down draw a square
+  $("canvas").mousemove(function(e){
+    if(drawFlag == 1){
+      fillCellDrag(e);
+    }
+  });
+
+  // begins an interval to iterate through generations every 1/10 of a second
+  $("#start").click(function() {
+    if(intervalID == 0){ // checks if there is an interval already running, if not a new interval is created
+      intervalID = setInterval(function(){board = generate(board);},100,);
+    }
+  });
+
+  // stops the current interval and resets interval id to 0
+  $("#stop").click(function() {
+    clearInterval(intervalID);
+    intervalID = 0; // used to show there is no active interval
+  });
+
+  // runs through a single generation of the board
+  $("#iterate").click(function() {
+    board = generate(board);
+  });
+
+  // finds the number of alive cells surrounding a specific cell
+  // state [list]: a state of the game board
+  // x [int]: an x coordinate of state
+  // y [int]: a y coordinate of state
+  // return [int]: the number of alive cells surround (x,y)
+  function findAliveNeighboors (x,y){
+    let count = 0; //stores the number of alive neighboors
+    for(let i = -1; i <= 1; i++){ // iterates through the y coordinates surrounding (x,y)
+      for(let j = -1; j <= 1; j++){ // iterates through the x coordinate surrounding (x,y)
+        if(board[y+i][x+j] == 1 && !(i == 0 && j == 0)){ // makes sure that the center is not included in the count
+          count++;
+        }
+      }
+    }
+    return count;
+  }
+
+  // runs a generation of the gameboard
+  // state [list]: a state of the gameboard
+  // return [list]: a new state that has run through a single generation
+  function generate(state){
+    // newBoard is used to create the new generation, starts as all zeros
+    let newBoard = Array.from(Array(cellCount + 2), () => Array(cellCount + 2).fill(0)); // Received help from stackOverflow for this line
+    for(let i = 1; i < state.length-1; i++){ // iterates through x coordinates of state
+      for(let j = 1; j < state[i].length-1; j++){ // iterates through y coordinates of space
+        if(state[j][i] == 0 && findAliveNeighboors(i,j) == 3){ // if a cell is dead and has three alive neighboords, it becomes alive
+          ctx.fillStyle = "#000"; // alive cells are black
+          ctx.fillRect((cellSize + borderSize)*i - cellSize, (cellSize + borderSize)*j - cellSize, cellSize,cellSize); // Sourced from my peer, Bharath Ram. Fills the section of the canvas corresponding to a cell
+          newBoard[j][i] = 1;
+        }
+        else if(state[j][i] == 1 && !(findAliveNeighboors(i,j) == 3 || findAliveNeighboors(i,j) == 2)){ // if a cell is alive and does not have 2 or 3 neighboors, it dies
+          ctx.fillStyle = 'rgb(255,255,255)'; // dead cells are white
+          ctx.fillRect((cellSize + borderSize)*i - cellSize, (cellSize + borderSize)*j - cellSize, cellSize,cellSize); // Sourced from my peer, Bharath Ram. Fills the section of the canvas corresponding to a cell
+          newBoard[j][i] = 0;
+        }
+        else{
+          newBoard[j][i] = state[j][i]; // otherwise cell does not change
+        }
+      }
+    }
+    ctx.fillStyle = "#000"; // reset fill style to prepare for drawing
+    return newBoard;
+  }
+
+  // Changes an alive cell to dead, or a dead cell to alive
+  // used for user input events, allows user to click on a single cell
+  // e [event]: a user event on the canvas
+  function fillCellClick(e){
+  let rect = myCanvas.getBoundingClientRect(); // Sourced from stackOverflow
+  let x = (e.clientX - rect.left); // find the relative x coordinate to the canvas
+  let y = (e.clientY - rect.top); // find the relative y coordinate to the canvas
+
+  //xloc and yloc convert the x coordinate relative to the canvas into indexes of board.
+  xloc = (x-(x%(cellSize + borderSize)))/(cellSize + borderSize)+1;
+  yloc = (y-(y%(cellSize + borderSize)))/(cellSize + borderSize)+1;
+
+  //checks to make sure the user did not click on a borderline
+  if(!((x)%(cellSize + borderSize) == 0 || (y)%(cellSize + borderSize) == 0)){
+    // if a cell is currently dead, set it to be alive
+    if(board[yloc][xloc] == 0){
+      ctx.fillStyle = "#000";
+      board[yloc][xloc] = 1;
+    }
+    // if a cell is currently alive, set it to be dead
+    else{
+      ctx.fillStyle = "rgb(255,255,255)";
+      board[yloc][xloc] = 0;
+    }
+    ctx.fillRect((cellSize + borderSize)*xloc - cellSize, (cellSize + borderSize)*yloc - cellSize, cellSize,cellSize); // Sourced from my peer, Bharath Ram. Fills the section of the canvas corresponding to a cell
+  }
+}
+
+// fills the current cell a user is selecting
+// difference between this and fillCellClick is that fillCellDrag does not feature erasing (filling a cell with white and setting a cell to dead)
+// e [event]: a user event on the canvas
+function fillCellDrag(e){
+  let rect = myCanvas.getBoundingClientRect(); // sourced from stackOverflow
+  let x = (e.clientX - rect.left); // find the relative x coordinate to the canvas
+  let y = (e.clientY - rect.top); // find the relative y coordinate to the canvas
+  
+  //xloc and yloc convert the x coordinate relative to the canvas into indexes of board.
+  xloc = (x-(x%(cellSize + borderSize)))/(cellSize + borderSize)+1;
+  yloc = (y-(y%(cellSize + borderSize)))/(cellSize + borderSize)+1;
+
+  //checks to make sure the user did not click on a borderline
+  if(!((x)%(cellSize + borderSize) == 0 || (y)%(cellSize + borderSize) == 0)){
+    ctx.fillStyle = "#000";
+    board[yloc][xloc] = 1; // sets cell to be alive
+    ctx.fillRect((cellSize + borderSize)*xloc - cellSize, (cellSize + borderSize)*yloc - cellSize, cellSize,cellSize); // got help from my best buddy nicholas salvatore gaudio
+  }
+}
+  
+});
+</script>
+</head>
+
+<body>
+<div class = "fixed">
+  <div class = "center"></div>
+  <button id = "start">start</button>
+  <button id = "stop">stop</button>
+  <button id = "iterate">iterate</button>
+  </div>
+</div>  
+<p id = "num"></p>
+</body>
+</html>
