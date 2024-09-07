@@ -43,7 +43,7 @@ function App() {
         <div className="header__title" onClick={reveal_secret}>
           {title}
         </div>
-        <div className="header__desc">
+        {/* <div className="header__desc">
           A <span style={{ color: "rgb(78, 201, 176)" }}>{"MERN"}</span>{" "}
           <span style={{ color: "rgb(255, 215, 10)" }}>{"("}</span>
           <span style={{ color: "rgb(197, 134, 192)" }}>
@@ -59,7 +59,7 @@ function App() {
           <span style={{ color: "rgb(86, 156, 214)" }}>{"cloud"}</span> based{" "}
           <span style={{ color: "rgb(78, 201, 176)" }}>{"MongoDB Atlas"}</span>{" "}
           for storage.
-        </div>
+        </div> */}
       </div>
       <div className="intro">
         <div className="intro__me">
