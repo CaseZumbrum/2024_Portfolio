@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<head>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script>
+$(function() {
+          const myCanvas = document.createElement('canvas');
+          myCanvas.width = 300;
+          myCanvas.height = 300;
+	  document.body.appendChild(myCanvas);
+          const ctx = myCanvas.getContext('2d');
+                const magFact = 100;
+        const panx = 1.5;
+        const pany = 1.5;
+
+function check(x,y,c_r,c_i){
+let real = x;
+let imag = y;
+for(let i = 1; i<25;i++){
+        const treal = real*real - imag*imag + c_r;
+        const timag = 2*real*imag + c_i;
+        real = treal;
+        imag = timag;
+if(real*real + imag*imag > 10){
+return 1;
+}
+
+}
+return 0;
+}
+
+$("#mandel").mousemove(function(e) {
+var offset = $(this).offset();
+  var real = (e.pageX - offset.left);
+  var imag = (e.pageY - offset.top);
+        real = real/240 - 1.5;
+        imag  =-1* imag/240 -1;
+                for(let x = 0; x < myCanvas.width;x++){
+                for(let y = 0; y < myCanvas.height; y++){
+                const inSet = check(x/magFact - panx, y/magFact - pany,real,imag);
+                        if(inSet == 0){
+                                ctx.fillStyle = '#000';
+}
+                        else{
+                                ctx.fillStyle = '#fff';
+}
+                        ctx.fillRect(x,y,1,1);
+}
+}
+
+       document.getElementById("num").innerHTML ="C = "+ real+ " + " + imag +"i";
+
+});
+
+});
+
+</script>
+</head>
+<body>
+<a id = "mandel">
+        <img class = "demo-box" src = "images/mandelbrotset.png" />
+</a>
+<p id = "num"></p>
+</body>
+</html>
+

@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import pathlib
+from typing import Optional
 
 app = FastAPI()
 
@@ -39,6 +40,7 @@ class ProjectModel(BaseModel):
     title: str
     img: str
     time: str
+    link: Optional[str] = None
 
 
 class ProjectList(BaseModel):
@@ -58,6 +60,16 @@ async def get_work():
         jobs=await work_collection.find().sort("time", -1).to_list(100)
     ).jobs
 
+
+app.mount(
+    "/project_pages",
+    StaticFiles(
+        directory=pathlib.Path(__file__)
+        .parent.resolve()
+        .joinpath("../../../projects/"),
+    ),
+    name="project_pages",
+)
 
 app.mount(
     "/",
