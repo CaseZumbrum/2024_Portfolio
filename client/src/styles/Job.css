@@ -19,6 +19,9 @@
       width: 95%;
   
     }
+    .job__image img{
+        display: none;
+    }
   }
 
 .job:hover{

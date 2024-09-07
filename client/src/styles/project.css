@@ -1,6 +1,6 @@
 .project{
-    display: grid;
-    grid-template-columns:0.9fr 1.1fr;
+    display: flex;
+    flex-flow: row;
     gap: 20px;
     max-width: 600px;
     min-width: 20%;
@@ -16,6 +16,7 @@
   }
 
 .post__content {
+    flex: 0 1 auto;
     margin:0;
     font-size: 1rem;
     color: rgb(215, 186, 125);
@@ -44,3 +45,10 @@
     width: 250px;
     max-width: 30vw;
 }
+
+
+@media screen and (max-width: 600px) {
+    .post__image img{
+        display: none;
+    }
+  }
