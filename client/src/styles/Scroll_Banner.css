@@ -18,14 +18,23 @@
     transform: scale(1.05)
   }
 
+
   .marquee--8 {
     --marquee-item-width: 100px;
     --marquee-item-height: 100px;
     --marquee-duration: 15s;
     --marquee-items: 9;
   }
+  @media screen and (max-width: 600px) {
+    .marquee--8 {
+      --marquee-item-width: 60px;
+      --marquee-item-height: 60px;
+    }
+  }
   
   .marquee__item {
+    width: var(--marquee-item-width);
+    height: var(--marquee-item-height);
     overflow: hidden;
     --marquee-item-offset: max(
       calc(var(--marquee-item-width) * var(--marquee-items)),
