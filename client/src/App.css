@@ -33,6 +33,12 @@
   flex: 0 1 auto;
 }
 
+@media screen and (max-width: 600px) {
+  .header__desc {
+    visibility: hidden;
+  }
+}
+
 .intro {
   width:100vw;
   border-bottom: 2px solid #2b2b2b;
