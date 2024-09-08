@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="app">
       <div className="header">
-        <div className="header__title" onClick={reveal_secret}>
+        <div className="header__title">
           {title}
         </div>
         <div className="header__desc">
@@ -54,7 +54,7 @@ function App() {
           stack{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>{"portfolio"}</span> site
           for all of my{" "}
-          <span style={{ color: "rgb(86, 156, 214)" }}>{"projects"}</span>!
+          <span style={{ color: "rgb(86, 156, 214)", cursor:"pointer" }} onClick={()=>{(window.open("/project_pages/miner.html", "_blank"))}}>{"projects"}</span>!
           Currently running on{" "}
           <span style={{ color: "rgb(78, 201, 176)" }}>{"AWS Lightsail"}</span>{" "}
           and using{" "}
@@ -121,7 +121,11 @@ function App() {
           </span>
           ,{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>{"Data Analysis"}</span>,
-          and <span style={{ color: "rgb(86, 156, 214)" }}>{"Web 3.0"}</span>.
+          and <span style={{ color: "rgb(86, 156, 214)" }}>{"Web"}</span>
+          <span style={{ color: "rgb(86, 156, 214)", cursor:"pointer" }}  onClick={reveal_secret}>{":3"}</span>
+          <span style={{ color: "rgb(86, 156, 214)" }}>{".0"}</span>.
+
+
           <br></br>
           <br></br>
           I'm currently working to design a{" "}

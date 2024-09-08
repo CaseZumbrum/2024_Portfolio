@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<head>
+<style>
+    h4{
+    display: inline
+    }
+</style>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"> // jquery babay</script> 
+<script>
+$(function(){
+alert("Welcome to DEEP. In this game, you venture to the center of the earth.");
+let pickaxePower = 1
+let minerPower = 1;
+let minerPowerCost = 100;
+let minerCount = 0;
+let minerCost = 10;
+let minerMinerCost = 1000;
+let minerMinerCount = 0;
+
+calculateMPS();
+//let id = setInterval(function(){
+//    document.getElementById("minerPoints").innerHTML = parseInt(document.getElementById("minerPoints").innerHTML) + mine();
+//},1000);
+setInterval(function(){
+    minerCount += minerMinerCount;
+    calculateMPS();
+    mine()
+},1000);
+
+$("#mine").click(function(){
+    document.getElementById("minerPoints").innerHTML = parseInt(document.getElementById("minerPoints").innerHTML) - pickaxePower;
+    document.getElementById("available").innerHTML = 2900000 - parseInt(document.getElementById("minerPoints").innerHTML);
+});
+
+/*$("#buyMiners").click(function(){
+    minerCost = Math.floor(10 * ((minerCount-(minerCount%10))/10+1) ** 1.2);
+    if(parseInt(document.getElementById("minerPoints").innerHTML) >= minerCost){
+        minerCount++;
+        document.getElementById("buyMiners").innerHTML = "buy a miner: " + minerCost;
+        document.getElementById("minerPoints").innerHTML = parseInt(document.getElementById("minerPoints").innerHTML) - minerCost;
+        setInterval(function(){
+            document.getElementById("minerPoints").innerHTML = parseInt(document.getElementById("minerPoints").innerHTML) + 1;
+        },1000);
+    }
+});
+*/
+
+$("#buyMiners").click(function(){
+    if(parseInt(document.getElementById("minerPoints").innerHTML) + minerCost <= 2900000){
+        minerCount++;
+        document.getElementById("minerPoints").innerHTML = parseInt(document.getElementById("minerPoints").innerHTML) + minerCost;
+        document.getElementById("available").innerHTML = 2900000 - parseInt(document.getElementById("minerPoints").innerHTML);
+        document.getElementById("minerCount").innerHTML = "You currently have " + minerCount + " miners!";
+        minerCost = Math.floor(10 * ((minerCount-(minerCount%10))/10+1) ** 1.2);
+        document.getElementById("buyMiners").innerHTML = "buy a miner: " + minerCost;
+    }
+    calculateMPS();
+});
+
+$("#buyMinerPower").click(function(){
+    if(parseInt(document.getElementById("minerPoints").innerHTML) + minerPowerCost <= 2900000){
+        minerPower = minerPower*2;
+        document.getElementById("minerPoints").innerHTML = parseInt(document.getElementById("minerPoints").innerHTML) + minerPowerCost;
+        document.getElementById("available").innerHTML = 2900000 - parseInt(document.getElementById("minerPoints").innerHTML);
+        document.getElementById("minerCount").innerHTML = "You currently have " + minerCount + " miners!";
+        minerPowerCost = Math.floor(100 * ((minerPower-(minerPower%4))/4+1) ** 2);
+        document.getElementById("buyMinerPower").innerHTML = "increase mining power: " + minerPowerCost;
+    }
+    calculateMPS();
+});
+
+$("#buyMinerMiner").click(function(){
+    if(parseInt(document.getElementById("minerPoints").innerHTML) + minerMinerCost <= 2900000){
+        minerMinerCount++;
+        document.getElementById("minerPoints").innerHTML = parseInt(document.getElementById("minerPoints").innerHTML) + minerMinerCost;
+        document.getElementById("available").innerHTML = 2900000 - parseInt(document.getElementById("minerPoints").innerHTML);
+        document.getElementById("minerMinerCount").innerHTML = "You currently have " + minerMinerCount + " miner miners!";
+        minerMinerCost = Math.floor(1000 * ((minerMinerCount-(minerMinerCount%2))/2+1) ** 2);
+        document.getElementById("buyMinerMiner").innerHTML = "buy a  miner miner: " + minerMinerCost;
+    }
+    calculateMPS();
+});
+
+function calculateMPS(){
+    document.getElementById("mps").innerHTML = "Meters per second: "  + (minerPower*minerCount);
+}
+
+function mine(){
+    document.getElementById("minerPoints").innerHTML = parseInt(document.getElementById("minerPoints").innerHTML) - minerPower*minerCount;
+    document.getElementById("available").innerHTML = 2900000 - parseInt(document.getElementById("minerPoints").innerHTML);
+    document.getElementById("minerCount").innerHTML = "You currently have " + minerCount + " miners!";
+    minerCost = Math.floor(10 * ((minerCount-(minerCount%10))/10+1) ** 1.2);
+    document.getElementById("buyMiners").innerHTML = "buy a miner: " + minerCost;
+    if(parseInt(document.getElementById("minerPoints").innerHTML) < 0){
+        document.getElementById("minerPoints").innerHTML = 0;
+        setTimeout(function(){
+            alert("eat shit dumbass, theres nothing in the center of the earth.");
+        },1000);
+    }
+}
+});
+</script>
+
+</head>
+
+<body>
+    <img src = "minerGif.gif" height = 200 width = 200>
+    <p id = "mps"></p>
+    Distance to the center of the earth: <h4 id = "minerPoints">2900000</h4> meters
+    <br>
+    Available distance: <h4 id = "available">0</h4> meters
+    <br>
+    <br>
+    <button id = "mine">mine</button>
+    <br>
+    <button id = "buyMiners">buy a miner: 10</button> <h4 id = "minerCount">You currently have 0 miners!</h4>
+    <br>
+    <button id = "buyMinerPower">increase mining power: 100</button>
+    <br>
+    <button id = "buyMinerMiner">buy a miner miner: 1000</button> <h4 id = "minerMinerCount"></h4>
+</body>
+</html>
