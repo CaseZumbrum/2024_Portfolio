@@ -164,6 +164,12 @@
   font-size: 2rem;
 }
 
+.skills__nyan{
+  object-fit: none;
+    width: 100vw;
+  height: 300px;
+}
+
 *{box-sizing:border-box;
   font-family: Cascadia Code,sans-serif;
 }

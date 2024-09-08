@@ -11,6 +11,7 @@ function App() {
   const [jobs, setJobs] = useState<job[]>([])
   const [title, setTitle] = useState<string>("Case Zumbrum's Portfolio")
   const [image, setImage] = useState<string>("/static/images/case.png")
+  const [secret, setSecret] = useState<boolean>(false);
   const a: HTMLAudioElement = new Audio("/meow.mp3");
   useEffect(() => {
     fetch(import.meta.env.VITE_API + "/projects").then((response) => {
@@ -33,10 +34,12 @@ function App() {
       setTitle("Cat Zumbrum's Portfolio");
       setImage("/cat.jpg")
       a.play();
+      setSecret(true)
     }
     else {
       setTitle("Case Zumbrum's Portfolio");
       setImage("/static/images/case.png")
+      setSecret(false)
     }
   }
   return (
@@ -156,7 +159,7 @@ function App() {
       </div>
       <div className="skills">
         <div className='skills__title'>Skills</div>
-        <Scroll_Banner></Scroll_Banner>
+        {secret?<img className="skills__nyan" src='/nyan.gif'></img>:<Scroll_Banner></Scroll_Banner>}
       </div>
 
       <div className="projects">
