@@ -71,6 +71,12 @@ app.mount(
     name="project_pages",
 )
 
+
+app.mount("/cop",StaticFiles(
+	directory=pathlib.Path(__file__).parent.resolve().joinpath("../../../../Pokemon_Showdown_Showcase/node/dist"), html=True,
+),name="cop")
+
+
 app.mount(
     "/",
     StaticFiles(
