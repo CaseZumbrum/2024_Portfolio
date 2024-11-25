@@ -182,3 +182,30 @@ div{
 html{
   background-color: #1f1f1f;
 }
+
+
+.show-nick {
+  border: 1px solid pink;
+ width: 500px;
+  height: 500px; 
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+  flex-flow: row;
+  justify-content:center;
+  align-items: center;
+}
+
+.child{
+  border: 1px solid blue;
+  width: 100px;
+  height: 100px;
+  flex: 0 1 auto;
+}
+
+.two {
+  border: 1px solid orange;
+  width: 100px;
+  height: 100px;
+  flex: 1 0 auto;
+}

@@ -10,9 +10,14 @@ function App() {
   const [projects, setProjects] = useState<project[]>([]);
   const [jobs, setJobs] = useState<job[]>([])
   const [title, setTitle] = useState<string>("Case Zumbrum's Portfolio")
-  const [image, setImage] = useState<string>("/static/images/case.png")
+  const [image, setImage] = useState<string>("/cat.jpg")
   const [secret, setSecret] = useState<boolean>(false);
+  const [mousePosition, setMousePosition] = useState<[number, number]>([0,0])
+  const [rat, setRat] = useState<boolean>(false);
+
   const a: HTMLAudioElement = new Audio("/meow.mp3");
+  const r: HTMLAudioElement = new Audio("/static/audio/rats.mp3");
+
   useEffect(() => {
     fetch(import.meta.env.VITE_API + "/projects").then((response) => {
       response.json().then((projects) => {
@@ -42,8 +47,31 @@ function App() {
       setSecret(false)
     }
   }
+
+  // return(
+  //   <div className="show-nick">
+  //     <div className='child'>
+  //       hi
+  //     </div>
+  //     <div className='two'>
+  //       hi2
+  //     </div>
+  //   </div>
+  // );
+
+  const handle_move = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    setMousePosition([e.clientX, e.clientY])
+  }
+
   return (
-    <div className="app">
+    <div className="app" onMouseMove={handle_move}>
+     {rat && <div className='rat_mouse' style={{pointerEvents: "none"}}>
+        <div className='cheese' style={{position:"absolute", left: mousePosition[0]-20, top: mousePosition[1]-20}}>
+          <img src="/static/images/cheese.png" style={{width: "30px", height: "30px"}}></img>
+        </div>      <div className='rat' style={{position:"absolute", left: mousePosition[0]+20, top: mousePosition[1]+20}}>
+          <img src="/static/images/rat.png" style={{width: "100px", height: "100px", transform: "rotate(90deg)"}}></img>
+        </div>
+      </div>}
       <div className="header">
         <div className="header__title">
           {title}
@@ -131,18 +159,23 @@ function App() {
 
           <br></br>
           <br></br>
-          I'm currently working to design a{" "}
+          I'm currently working with{" "}
           <span style={{ color: "rgb(78, 201, 176)" }}>
-            {"Hardware Fourier Transform Chip"}
+            {"Internet of Things for Agriculture"}
           </span>{" "}
-          that uses{" "}
+          to develop a{" "}
           <span style={{ color: "rgb(197, 134, 192)" }}>
-            {"Boolean Operations"}
+            {"Drone Port"}
           </span>{" "}
-          to compute the{" "}
-          <span style={{ color: "rgb(206, 114, 60)" }}>{"Frequencies"}</span>{" "}
-          present in an input{" "}
-          <span style={{ color: "rgb(197, 134, 192)" }}>{"Waveform"}</span>.
+          for an{" "}
+          <span style={{ color: "rgb(206, 114, 60)" }}>{"Autonomous Agriculture Survey Drone"}</span>{" "}
+          and to create{" "}
+          <span style={{ color: "rgb(197, 134, 192)" }}>{"Report Gene"}</span>
+          <span style={{ color: "rgb(197, 134, 192)", cursor: "pointer" }} onClick={(e)=> {setRat(!rat);(!rat && r.play());}}>{"rat"}</span>
+          <span style={{ color: "rgb(197, 134, 192)" }}>{"ion Software "}</span>
+
+          for{" "}
+          <span style={{ color: "rgb(206, 114, 60)" }}>{"Farmland Orthomosaic Images"}</span>.
           <br></br>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"}"}</span>
         </div>
