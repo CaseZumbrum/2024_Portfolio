@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<head>
+<style>
+ div.fixed {
+  position: fixed;
+  top: 10px;
+  left: 20px;
+  width: 80;
+  border: 3px solid #050505;
+  z-index: 2;
+} 
+div.center{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"> // Using JQuery functions</script> 
+<script>
+$(function(){
+
+  const myCanvas = document.createElement("canvas"); 
+  const size = 1000;
+  const entities_count = 100; 
+  let mousex = 0;
+  let mousey = 0;
+
+  // The board array is used to store the gameboard, its length/width is two larger than the cellcount in order to create an outer barrier, necessary to avoid calling out of bounds indexes. Coordinates are in the form [y,x]
+  let board = Array.from(Array(size), () => Array(size).fill(0)); // Sourced from stack overflow. Creates board to be filled with zeros
+  let entities = Array.from(Array(entities_count), () => Array(entities_count).fill({x:Math.floor(Math.random() * size), y:Math.floor(Math.random() * size)}));
+
+  myCanvas.width = size; // defines the height and width of the canvas based on the cellCount, cellSize, and border size
+  myCanvas.height = size;
+  myCanvas.style.position = "absolute";
+  myCanvas.style.zIndex = "1";
+
+  document.body.appendChild(myCanvas); // Adds canvas to the html body tag
+
+  let intervalID = 0; // Used to store the current id of the interval used to play generations, 0 if there is not current interval
+
+  const ctx = myCanvas.getContext('2d'); // canvas context is used to get call functions for the canvas
+  ctx.fillStyle = "blue";
+  ctx.fillRect(0,0,myCanvas.width, myCanvas.height);
+
+  intervalID = setInterval(function(){entities = update_entities(entities);},10,);
+
+  function update_entities(state){
+    const magnitude = 10;
+    const magfact = 1/size;
+    const centerx = mousex - size/2;
+    const centery = mousey - size/2;
+    ctx.fillStyle = "blue";
+    ctx.fillRect(0, 0, size,size);
+    for( let i = 0; i < state.length; i++){
+      for( let j = 0; j < state[i].length; j++){
+        
+
+
+        const x = magfact * (state[i][j].x - mousex) * magnitude;
+        const y = magfact * (state[i][j].y - mousey) * magnitude;
+
+        state[i][j] = {x:state[i][j].x+y/(Math.max(y^2+x^2, 1)) -x, y:state[i][j].y-x/(Math.max(y^2+x^2, 1)) -y};
+        ctx.fillStyle = "white";
+        ctx.fillRect(state[i][j].x, state[i][j].y, 5,5);
+      } 
+    }
+    return state;
+  }
+
+
+  $("canvas").mousemove(function(e){
+    mousex = e.clientX;
+    mousey = e.clientY;
+  });
+
+
+
+  
+});
+</script>
+</head>
+
+<body>
+<div class = "fixed">
+</div>  
+<p id = "num"></p>
+</body>
+</html>
