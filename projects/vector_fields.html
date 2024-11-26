@@ -25,6 +25,7 @@ $(function(){
   const myCanvas = document.createElement("canvas"); 
   const size = 1000;
   const entities_count = 100; 
+  let mouseflag = false;
   let mousex = 0;
   let mousey = 0;
 
@@ -54,6 +55,24 @@ $(function(){
     const centery = mousey - size/2;
     ctx.fillStyle = "blue";
     ctx.fillRect(0, 0, size,size);
+    if(mouseflag){
+
+      for( let i = 0; i < state.length; i++){
+        for( let j = 0; j < state[i].length; j++){
+          
+  
+  
+          const x = magfact * (state[i][j].x - mousex) * magnitude;
+          const y = magfact * (state[i][j].y - mousey) * magnitude;
+  
+          state[i][j] = {x:state[i][j].x+5*x, y:state[i][j].y+5*y};
+          ctx.fillStyle = "white";
+          ctx.fillRect(state[i][j].x, state[i][j].y, 5,5);
+        } 
+      }
+
+    }
+    else{
     for( let i = 0; i < state.length; i++){
       for( let j = 0; j < state[i].length; j++){
         
@@ -67,6 +86,7 @@ $(function(){
         ctx.fillRect(state[i][j].x, state[i][j].y, 5,5);
       } 
     }
+  }
     return state;
   }
 
@@ -75,6 +95,17 @@ $(function(){
     mousex = e.clientX;
     mousey = e.clientY;
   });
+
+  $("canvas").mousedown(function(e){
+    console.log("test")
+    mouseflag = true;
+  })
+
+  $("canvas").mouseup(function(e){
+    mouseflag = false;
+  })
+
+
 
 
 
