@@ -9,7 +9,7 @@ const Scroll_Banner = () => {
             <img className="marquee__item" src="/static/images/linux.png" width="100" height="100" alt="" />
             <img className="marquee__item" src="/static/images/python.png" width="100" height="100" alt="" />
             <img className="marquee__item" src="/static/images/node.png" width="100" height="100" alt="" />
-            <img className="marquee__item" src="/static/images/TS.png" width="100" height="100" alt="" />
+            <img className="marquee__item" src="/static/images/TS.png" width="100" height="100" style={{cursor:"pointer"}} onClick={()=>{(window.open("/project_pages/vector_fields.html", "_blank"))}} alt="" />
             <img className="marquee__item" src="/static/images/mongo.png" width="100" height="100" alt="" />
             <img className="marquee__item" src="/static/images/fusion.png" width="100" height="100" alt="" />
             <img className="marquee__item" src="/static/images/matplot.png" width="100" height="100" alt="" />
