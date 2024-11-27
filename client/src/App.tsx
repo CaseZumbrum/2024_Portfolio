@@ -10,9 +10,9 @@ function App() {
   const [projects, setProjects] = useState<project[]>([]);
   const [jobs, setJobs] = useState<job[]>([])
   const [title, setTitle] = useState<string>("Case Zumbrum's Portfolio")
-  const [image, setImage] = useState<string>("/cat.jpg")
+  const [image, setImage] = useState<string>("/static/images/case.png")
   const [secret, setSecret] = useState<boolean>(false);
-  const [mousePosition, setMousePosition] = useState<[number, number]>([0,0])
+  const [mousePosition, setMousePosition] = useState<[number, number]>([0, 0])
   const [rat, setRat] = useState<boolean>(false);
 
   const a: HTMLAudioElement = new Audio("/meow.mp3");
@@ -65,11 +65,11 @@ function App() {
 
   return (
     <div className="app" onMouseMove={handle_move}>
-     {rat && <div className='rat_mouse' style={{pointerEvents: "none"}}>
-        <div className='cheese' style={{position:"absolute", left: mousePosition[0]-20, top: mousePosition[1]-20}}>
-          <img src="/static/images/cheese.png" style={{width: "30px", height: "30px"}}></img>
-        </div>      <div className='rat' style={{position:"absolute", left: mousePosition[0]+20, top: mousePosition[1]+20}}>
-          <img src="/static/images/rat.png" style={{width: "100px", height: "100px", transform: "rotate(90deg)"}}></img>
+      {rat && <div className='rat_mouse' style={{ pointerEvents: "none" }}>
+        <div className='cheese' style={{ position: "absolute", left: mousePosition[0] - 20, top: mousePosition[1] - 20 }}>
+          <img src="/static/images/cheese.png" style={{ width: "30px", height: "30px" }}></img>
+        </div>      <div className='rat' style={{ position: "absolute", left: mousePosition[0] + 20, top: mousePosition[1] + 20 }}>
+          <img src="/static/images/rat.png" style={{ width: "100px", height: "100px", transform: "rotate(90deg)" }}></img>
         </div>
       </div>}
       <div className="header">
@@ -85,7 +85,7 @@ function App() {
           stack{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>{"portfolio"}</span> site
           for all of my{" "}
-          <span style={{ color: "rgb(86, 156, 214)", cursor:"pointer" }} onClick={()=>{(window.open("/project_pages/miner.html", "_blank"))}}>{"projects"}</span>!
+          <span style={{ color: "rgb(86, 156, 214)", cursor: "pointer" }} onClick={() => { (window.open("/project_pages/miner.html", "_blank")) }}>{"projects"}</span>!
           Currently running on{" "}
           <span style={{ color: "rgb(78, 201, 176)" }}>{"AWS Lightsail"}</span>{" "}
           and using{" "}
@@ -153,7 +153,7 @@ function App() {
           ,{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>{"Data Analysis"}</span>,
           and <span style={{ color: "rgb(86, 156, 214)" }}>{"Web"}</span>
-          <span style={{ color: "rgb(86, 156, 214)", cursor:"pointer" }}  onClick={reveal_secret}>{":3"}</span>
+          <span style={{ color: "rgb(86, 156, 214)", cursor: "pointer" }} onClick={reveal_secret}>{":3"}</span>
           <span style={{ color: "rgb(86, 156, 214)" }}>{".0"}</span>.
 
 
@@ -171,7 +171,7 @@ function App() {
           <span style={{ color: "rgb(206, 114, 60)" }}>{"Autonomous Agriculture Survey Drone"}</span>{" "}
           and to create{" "}
           <span style={{ color: "rgb(197, 134, 192)" }}>{"Report Gene"}</span>
-          <span style={{ color: "rgb(197, 134, 192)", cursor: "pointer" }} onClick={(e)=> {setRat(!rat);(!rat && r.play());}}>{"rat"}</span>
+          <span style={{ color: "rgb(197, 134, 192)", cursor: "pointer" }} onClick={(e) => { setRat(!rat); (!rat && r.play()); }}>{"rat"}</span>
           <span style={{ color: "rgb(197, 134, 192)" }}>{"ion Software "}</span>
 
           for{" "}
@@ -192,7 +192,7 @@ function App() {
       </div>
       <div className="skills">
         <div className='skills__title'>Skills</div>
-        {secret?<img className="skills__nyan" src='/nyan.gif'></img>:<Scroll_Banner></Scroll_Banner>}
+        {secret ? <img className="skills__nyan" src='/nyan.gif'></img> : <Scroll_Banner></Scroll_Banner>}
       </div>
 
       <div className="projects">
