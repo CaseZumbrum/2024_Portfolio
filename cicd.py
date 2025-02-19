@@ -30,10 +30,12 @@ app.add_middleware(
 
 session = subprocess.Popen('exec echo "starting server"', stdout=API_LOG, shell=True)
 
+
 def close_logs():
     API_LOG.close()
     NPM_BUILD_LOG.close()
     GIT_LOG.close()
+
 
 def build_and_host():
     global session
@@ -42,7 +44,8 @@ def build_and_host():
     session.kill()
 
     print("--------------")
-    print("Pulling most recent files...")    subprocess.call(
+    print("Pulling most recent files...")
+    subprocess.call(
         "git pull",
         stdout=GIT_LOG,
         stderr=GIT_LOG,
@@ -73,6 +76,11 @@ atexit.register(close_logs)
 
 
 @app.get("/")
-async def get_build(passkey:str, respose: Response):
-    build_and_host()
-    return "hello"
+async def get_build(passkey: str, response: Response):
+    if passkey == config.CICD_PASSKEY:
+        build_and_host()
+        response.status_code = status.HTTP_200_OK
+        return {"Build": "Succeeded"}
+    else:
+        response.status_code = status.HTTP_401_UNAUTHORIZED
+        return {"Build": "Failed due to faulty passkey"}
