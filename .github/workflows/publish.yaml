@@ -9,8 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Publish Action
+        run: curl $Host?passkey=$PassKey
         with:
           Host: ${{ secrets.HOST }}
           PassKey: ${{ secrets.PASSKEY}}
-        run: curl $Host?passkey=$PassKey
+
 
