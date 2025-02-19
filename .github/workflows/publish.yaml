@@ -1,0 +1,16 @@
+name: Publish to AWS
+run-name: ${{ github.actor }} is publishing to the AWS lightsail instance
+on:
+  push:
+    branches: [main]
+
+jobs:
+  Publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publish Action
+        with:
+          Host: ${{ secrets.HOST }}
+          PassKey: ${{ secrets.PASSKEY}}
+        run: curl $Host?passkey=$PassKey
+
