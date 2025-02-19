@@ -5,3 +5,4 @@ config.py
 *.egg-info/
 __pycache__/
 dist/
+*.log
