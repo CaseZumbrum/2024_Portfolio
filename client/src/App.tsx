@@ -96,7 +96,7 @@ function App() {
       </div>
       <div className="intro">
         <div className="intro__me">
-          <img src={image}></img>
+          <img className="me_headshot" src={image}></img>
           <div className="me__links">
             <a
               className="profileLink"
