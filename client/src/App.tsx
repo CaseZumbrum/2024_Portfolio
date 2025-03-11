@@ -10,7 +10,7 @@ function App() {
   const [projects, setProjects] = useState<project[]>([]);
   const [jobs, setJobs] = useState<job[]>([])
   const [title, setTitle] = useState<string>("Case Zumbrum's Portfolio")
-  const [image, setImage] = useState<string>("/static/images/case.png")
+  const [image, setImage] = useState<string>("/static/images/case.jpg")
   const [secret, setSecret] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<[number, number]>([0, 0])
   const [rat, setRat] = useState<boolean>(false);
@@ -43,7 +43,7 @@ function App() {
     }
     else {
       setTitle("Case Zumbrum's Portfolio");
-      setImage("/static/images/case.png")
+      setImage("/static/images/case.jpg")
       setSecret(false)
     }
   }
