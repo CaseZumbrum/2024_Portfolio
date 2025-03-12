@@ -142,8 +142,9 @@ function App() {
         <div className="intro__description">
           <span style={{ color: "#d7ba7d" }}>Case_Zumbrum</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"("}</span>
-          <span style={{ color: "rgb(156, 220, 254)" }}>{"clOf"}</span>
+          <span style={{ color: "rgb(156, 220, 254)" }}>{"cl"}</span>
           <span style={{ color: "rgb(156, 220, 254)", "cursor": "pointer" }} onClick={assHandler}>{"ass"}</span>
+          <span style={{ color: "rgb(156, 220, 254)" }}>{"Of"}</span>
           <span style={{ color: "rgb(212, 212, 212)" }}>{"="}</span>
           <span style={{ color: "rgb(148, 206, 168)" }}>{"2027"}</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"){"}</span>
