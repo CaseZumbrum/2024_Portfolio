@@ -36,7 +36,7 @@ function App() {
 
   const reveal_secret = () => {
     if (title != "Cat") {
-      setTitle("Cat Zumbrum's Portfolio");
+      setTitle("Cat");
       setImage("/cat.jpg");
       a.play();
       setSecret(true);
