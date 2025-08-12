@@ -10,7 +10,7 @@ function App() {
   const [projects, setProjects] = useState<project[]>([]);
   const [jobs, setJobs] = useState<job[]>([])
   const [title, setTitle] = useState<string>("Case Zumbrum's Portfolio")
-  const [image, setImage] = useState<string>("/static/images/case.png")
+  const [image, setImage] = useState<string>("/static/images/case.jpg")
   const [secret, setSecret] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<[number, number]>([0, 0])
   const [rat, setRat] = useState<boolean>(false);
@@ -35,7 +35,7 @@ function App() {
   }, []);
 
   const reveal_secret = () => {
-    if (title == "Case Zumbrum's Portfolio") {
+    if (title != "Cat Zumbrum's Portfolio") {
       setTitle("Cat Zumbrum's Portfolio");
       setImage("/cat.jpg")
       a.play();
@@ -43,10 +43,11 @@ function App() {
     }
     else {
       setTitle("Case Zumbrum's Portfolio");
-      setImage("/static/images/case.png")
+      setImage("/static/images/case.jpg")
       setSecret(false)
     }
   }
+
 
   // return(
   //   <div className="show-nick">
@@ -96,7 +97,7 @@ function App() {
       </div>
       <div className="intro">
         <div className="intro__me">
-          <img src={image}></img>
+          <img className="me_headshot" src={image}></img>
           <div className="me__links">
             <a
               className="profileLink"
@@ -131,7 +132,7 @@ function App() {
         <div className="intro__description">
           <span style={{ color: "#d7ba7d" }}>Case_Zumbrum</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"("}</span>
-          <span style={{ color: "rgb(156, 220, 254)" }}>{"classOf"}</span>
+          <span style={{ color: "rgb(156, 220, 254)" }}>{"classOF"}</span>
           <span style={{ color: "rgb(212, 212, 212)" }}>{"="}</span>
           <span style={{ color: "rgb(148, 206, 168)" }}>{"2027"}</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"){"}</span>

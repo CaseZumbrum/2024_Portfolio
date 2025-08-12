@@ -66,6 +66,7 @@
   padding:10px;
   width: 350px;
   height:350px;
+  object-fit: cover;
 }
 
 .me__links{
