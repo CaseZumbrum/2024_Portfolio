@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import Job from './components/Job';
-import Project from './components/project';
-import Scroll_Banner from './components/Scroll_Banner';
-import job from './types/job';
-import project from './types/project';
+import Job from "./components/Job";
+import Project from "./components/project";
+import Scroll_Banner from "./components/Scroll_Banner";
+import job from "./types/job";
+import project from "./types/project";
 
 function App() {
   const [projects, setProjects] = useState<project[]>([]);
-  const [jobs, setJobs] = useState<job[]>([])
-  const [title, setTitle] = useState<string>("Case Zumbrum's Portfolio")
-  const [image, setImage] = useState<string>("/static/images/case.jpg")
+  const [jobs, setJobs] = useState<job[]>([]);
+  const [title, setTitle] = useState<string>("Case Zumbrum's Portfolio");
+  const [image, setImage] = useState<string>("/static/images/case.jpg");
   const [secret, setSecret] = useState<boolean>(false);
-  const [mousePosition, setMousePosition] = useState<[number, number]>([0, 0])
+  const [mousePosition, setMousePosition] = useState<[number, number]>([0, 0]);
   const [rat, setRat] = useState<boolean>(false);
 
   const a: HTMLAudioElement = new Audio("/meow.mp3");
@@ -21,14 +21,14 @@ function App() {
   useEffect(() => {
     fetch(import.meta.env.VITE_API + "/projects").then((response) => {
       response.json().then((projects) => {
-        console.log(projects)
+        console.log(projects);
         setProjects(projects);
       });
     });
 
     fetch(import.meta.env.VITE_API + "/work").then((response) => {
       response.json().then((jobs) => {
-        console.log(jobs)
+        console.log(jobs);
         setJobs(jobs);
       });
     });
@@ -37,17 +37,15 @@ function App() {
   const reveal_secret = () => {
     if (title != "Cat Zumbrum's Portfolio") {
       setTitle("Cat Zumbrum's Portfolio");
-      setImage("/cat.jpg")
+      setImage("/cat.jpg");
       a.play();
-      setSecret(true)
-    }
-    else {
+      setSecret(true);
+    } else {
       setTitle("Case Zumbrum's Portfolio");
-      setImage("/static/images/case.jpg")
-      setSecret(false)
+      setImage("/static/images/case.jpg");
+      setSecret(false);
     }
-  }
-
+  };
 
   // return(
   //   <div className="show-nick">
@@ -61,39 +59,71 @@ function App() {
   // );
 
   const handle_move = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    setMousePosition([e.clientX, e.clientY])
-  }
+    setMousePosition([e.clientX, e.clientY]);
+  };
 
   return (
     <div className="app" onMouseMove={handle_move}>
-      {rat && <div className='rat_mouse' style={{ pointerEvents: "none" }}>
-        <div className='cheese' style={{ position: "absolute", left: mousePosition[0] - 20, top: mousePosition[1] - 20 }}>
-          <img src="/static/images/cheese.png" style={{ width: "30px", height: "30px" }}></img>
-        </div>      <div className='rat' style={{ position: "absolute", left: mousePosition[0] + 20, top: mousePosition[1] + 20 }}>
-          <img src="/static/images/rat.png" style={{ width: "100px", height: "100px", transform: "rotate(90deg)" }}></img>
+      {rat && (
+        <div className="rat_mouse" style={{ pointerEvents: "none" }}>
+          <div
+            className="cheese"
+            style={{
+              position: "absolute",
+              left: mousePosition[0] - 20,
+              top: mousePosition[1] - 20,
+            }}
+          >
+            <img
+              src="/static/images/cheese.png"
+              style={{ width: "30px", height: "30px" }}
+            ></img>
+          </div>{" "}
+          <div
+            className="rat"
+            style={{
+              position: "absolute",
+              left: mousePosition[0] + 20,
+              top: mousePosition[1] + 20,
+            }}
+          >
+            <img
+              src="/static/images/rat.png"
+              style={{
+                width: "100px",
+                height: "100px",
+                transform: "rotate(90deg)",
+              }}
+            ></img>
+          </div>
         </div>
-      </div>}
+      )}
       <div className="header">
-        <div className="header__title">
-          {title}
-        </div>
-        <div className="header__desc">
-          A <span style={{ color: "rgb(78, 201, 176)" }}>{"FastAPI"}</span>{", "}
-          <span style={{ color: "#d7ba7d" }}>{"MongoDB"}</span>{", and "}
-          <span style={{ color: "rgb(197, 134, 192)" }}>
-            {"React "}
-          </span>
+        <div className="header__title">{title}</div>
+        {/* <div className="header__desc">
+          A <span style={{ color: "rgb(78, 201, 176)" }}>{"FastAPI"}</span>
+          {", "}
+          <span style={{ color: "#d7ba7d" }}>{"MongoDB"}</span>
+          {", and "}
+          <span style={{ color: "rgb(197, 134, 192)" }}>{"React "}</span>
           stack{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>{"portfolio"}</span> site
           for all of my{" "}
-          <span style={{ color: "rgb(86, 156, 214)", cursor: "pointer" }} onClick={() => { (window.open("/project_pages/miner.html", "_blank")) }}>{"projects"}</span>!
-          Currently running on{" "}
+          <span
+            style={{ color: "rgb(86, 156, 214)", cursor: "pointer" }}
+            onClick={() => {
+              window.open("/project_pages/miner.html", "_blank");
+            }}
+          >
+            {"projects"}
+          </span>
+          ! Currently running on{" "}
           <span style={{ color: "rgb(78, 201, 176)" }}>{"AWS Lightsail"}</span>{" "}
           and using{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>{"cloud"}</span> based{" "}
           <span style={{ color: "rgb(78, 201, 176)" }}>{"MongoDB Atlas"}</span>{" "}
           for storage.
-        </div>
+        </div> */}
       </div>
       <div className="intro">
         <div className="intro__me">
@@ -154,51 +184,73 @@ function App() {
           ,{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>{"Data Analysis"}</span>,
           and <span style={{ color: "rgb(86, 156, 214)" }}>{"Web"}</span>
-          <span style={{ color: "rgb(86, 156, 214)", cursor: "pointer" }} onClick={reveal_secret}>{":3"}</span>
-          <span style={{ color: "rgb(86, 156, 214)" }}>{".0"}</span>.
-
-
-          <br></br>
+          <span
+            style={{ color: "rgb(86, 156, 214)", cursor: "pointer" }}
+            onClick={reveal_secret}
+          >
+            {":3"}
+          </span>
+          <span style={{ color: "rgb(86, 156, 214)" }}>{".0"}</span>.<br></br>
           <br></br>
           I'm currently working with{" "}
           <span style={{ color: "rgb(78, 201, 176)" }}>
             {"Internet of Things for Agriculture"}
           </span>{" "}
           to develop a{" "}
-          <span style={{ color: "rgb(197, 134, 192)" }}>
-            {"Drone Port"}
-          </span>{" "}
+          <span style={{ color: "rgb(197, 134, 192)" }}>{"Drone Port"}</span>{" "}
           for an{" "}
-          <span style={{ color: "rgb(206, 114, 60)" }}>{"Autonomous Agriculture Survey Drone"}</span>{" "}
+          <span style={{ color: "rgb(206, 114, 60)" }}>
+            {"Autonomous Agriculture Survey Drone"}
+          </span>{" "}
           and to create{" "}
           <span style={{ color: "rgb(197, 134, 192)" }}>{"Report Gene"}</span>
-          <span style={{ color: "rgb(197, 134, 192)", cursor: "pointer" }} onClick={(e) => { setRat(!rat); (!rat && r.play()); }}>{"rat"}</span>
+          <span
+            style={{ color: "rgb(197, 134, 192)", cursor: "pointer" }}
+            onClick={(e) => {
+              setRat(!rat);
+              !rat && r.play();
+            }}
+          >
+            {"rat"}
+          </span>
           <span style={{ color: "rgb(197, 134, 192)" }}>{"ion Software "}</span>
-
           for{" "}
-          <span style={{ color: "rgb(206, 114, 60)" }}>{"Farmland Orthomosaic Images"}</span>.
-          <br></br>
+          <span style={{ color: "rgb(206, 114, 60)" }}>
+            {"Farmland Orthomosaic Images"}
+          </span>
+          .<br></br>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"}"}</span>
         </div>
       </div>
-      <div className='work'>
-        <div className='work__title'>
+      <div className="work">
+        <div className="work__title">
           <span>Work Experience</span>
         </div>
-        <div className='work__content'>
+        <div className="work__content">
           {jobs.map((job) => (
             <Job {...job}></Job>
           ))}
         </div>
       </div>
       <div className="skills">
-        <div className='skills__title'>Skills</div>
-        {secret ? <img className="skills__nyan" src='/nyan.gif'></img> : <Scroll_Banner></Scroll_Banner>}
+        <div className="skills__title">Skills</div>
+        {secret ? (
+          <img className="skills__nyan" src="/nyan.gif"></img>
+        ) : (
+          <Scroll_Banner></Scroll_Banner>
+        )}
       </div>
 
       <div className="projects">
         <div className="projects__title">
-          <span>Projects</span>
+          <span
+            style={{ color: "rgb(86, 156, 214)", cursor: "pointer" }}
+            onClick={() => {
+              window.open("/project_pages/miner.html", "_blank");
+            }}
+          >
+            Projects
+          </span>
         </div>
         <div className="projects__content">
           {projects.map((project) => (
@@ -206,7 +258,6 @@ function App() {
           ))}
         </div>
       </div>
-
     </div>
   );
 }
