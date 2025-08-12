@@ -35,13 +35,13 @@ function App() {
   }, []);
 
   const reveal_secret = () => {
-    if (title != "Cat Zumbrum's Portfolio") {
+    if (title != "Cat") {
       setTitle("Cat Zumbrum's Portfolio");
       setImage("/cat.jpg");
       a.play();
       setSecret(true);
     } else {
-      setTitle("Case Zumbrum's Portfolio");
+      setTitle("Case");
       setImage("/static/images/case.jpg");
       setSecret(false);
     }
@@ -99,7 +99,12 @@ function App() {
         </div>
       )}
       <div className="header">
-        <div className="header__title">{title}</div>
+        <div className="header__title">
+          <span style={{ cursor: "pointer" }} onClick={reveal_secret}>
+            {title + " "}
+          </span>
+          Zumbrum's Portfolio
+        </div>
         {/* <div className="header__desc">
           A <span style={{ color: "rgb(78, 201, 176)" }}>{"FastAPI"}</span>
           {", "}
@@ -167,7 +172,7 @@ function App() {
           <span style={{ color: "rgb(148, 206, 168)" }}>{"2027"}</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"){"}</span>
           <br></br>
-          I'm a second year{" "}
+          I'm a third year{" "}
           <span style={{ color: "rgb(78, 201, 176)" }}>
             {"Computer Engineering"}
           </span>{" "}
@@ -177,18 +182,17 @@ function App() {
           </span>
           .<br></br>
           <br></br>
-          I'm very interested in{" "}
+          I'm focused on{" "}
           <span style={{ color: "rgb(86, 156, 214)" }}>
-            {"Machine Learning"}
+            {"Embedded Development"}
           </span>
           ,{" "}
-          <span style={{ color: "rgb(86, 156, 214)" }}>{"Data Analysis"}</span>,
-          and <span style={{ color: "rgb(86, 156, 214)" }}>{"Web"}</span>
-          <span
-            style={{ color: "rgb(86, 156, 214)", cursor: "pointer" }}
-            onClick={reveal_secret}
-          >
-            {":3"}
+          <span style={{ color: "rgb(86, 156, 214)" }}>
+            {"Hardware Design"}
+          </span>
+          , and{" "}
+          <span style={{ color: "rgb(86, 156, 214)" }}>
+            {"Signal Processing"}
           </span>
           <span style={{ color: "rgb(86, 156, 214)" }}>{".0"}</span>.<br></br>
           <br></br>
@@ -244,7 +248,7 @@ function App() {
       <div className="projects">
         <div className="projects__title">
           <span
-            style={{ color: "rgb(86, 156, 214)", cursor: "pointer" }}
+            style={{ cursor: "pointer" }}
             onClick={() => {
               window.open("/project_pages/miner.html", "_blank");
             }}
