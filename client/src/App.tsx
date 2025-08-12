@@ -194,7 +194,7 @@ function App() {
           <span style={{ color: "rgb(86, 156, 214)" }}>
             {"Signal Processing"}
           </span>
-          <span style={{ color: "rgb(86, 156, 214)" }}>{".0"}</span>.<br></br>
+          .<br></br>
           <br></br>
           I'm currently working with{" "}
           <span style={{ color: "rgb(78, 201, 176)" }}>
