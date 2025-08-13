@@ -23,7 +23,7 @@
     --marquee-item-width: 100px;
     --marquee-item-height: 100px;
     --marquee-duration: 15s;
-    --marquee-items: 9;
+    --marquee-items: 14;
   }
   @media screen and (max-width: 600px) {
     .marquee--8 {
