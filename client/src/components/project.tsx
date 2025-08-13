@@ -18,7 +18,9 @@ export default function Project({ title, body, img, link, time }: project) {
           <span style={{ color: "#64c8ab" }}>links</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"("}</span>
 
-          <span style={{ color: "rgb(71, 156, 214)" }}>test</span>
+          <a href={link} style={{ color: "rgb(71, 156, 214)" }}>
+            test
+          </a>
           <span style={{ color: "rgb(255, 181, 24)" }}>{")"}</span>
         </div>
         <h2>
