@@ -2,13 +2,7 @@ import "../styles/project.css";
 import project from "../types/project";
 export default function Project({ title, body, img, link, time }: project) {
   return (
-    <div
-      className="project"
-      onClick={() => {
-        link ? window.open(link, "_blank") : null;
-      }}
-      style={{ cursor: link ? "pointer" : "inherit" }}
-    >
+    <div className="project">
       <div className="post__image">
         <img src={img}></img>
       </div>
@@ -18,9 +12,17 @@ export default function Project({ title, body, img, link, time }: project) {
           <span style={{ color: "#64c8ab" }}>links</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"("}</span>
 
-          <a href={link} style={{ color: "rgb(71, 156, 214)" }}>
-            test
-          </a>
+          {link ? (
+            <a
+              href={link}
+              style={{ color: "rgb(71, 156, 214)" }}
+              target="_blank"
+            >
+              Source
+            </a>
+          ) : (
+            <span style={{ color: "rgb(71, 156, 214)" }}>None</span>
+          )}
           <span style={{ color: "rgb(255, 181, 24)" }}>{")"}</span>
         </div>
         <h2>
