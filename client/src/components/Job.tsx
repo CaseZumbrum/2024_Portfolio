@@ -19,7 +19,10 @@ const Job = (job: job) => {
           {job.company}
           <span style={{ color: "#c9cbcc" }}>:</span>
         </div>
-        <div className="content__description">{job.description}</div>
+        <div
+          className="content__description"
+          dangerouslySetInnerHTML={{ __html: job.description }}
+        ></div>
       </div>
     </div>
   );
