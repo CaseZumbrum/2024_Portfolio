@@ -23,6 +23,7 @@
 }
 .post__content h2 {
     margin-bottom: 0px;
+    margin-top: 0px;
 }
 .post__time {
     font-size: .9rem;
