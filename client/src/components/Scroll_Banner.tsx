@@ -72,7 +72,7 @@ const Scroll_Banner = () => {
       />
       <img
         className="marquee__item"
-        src="/static/images/pyqtgraph.jpg"
+        src="/static/images/pyqtgraph.png"
         width="100"
         height="100"
         alt=""
