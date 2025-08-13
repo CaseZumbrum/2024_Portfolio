@@ -19,14 +19,14 @@ const Scroll_Banner = () => {
       />
       <img
         className="marquee__item"
-        src="/static/images/python.png"
+        src="/static/images/docker.png"
         width="100"
         height="100"
         alt=""
       />
       <img
         className="marquee__item"
-        src="/static/images/docker.png"
+        src="/static/images/python.png"
         width="100"
         height="100"
         alt=""
