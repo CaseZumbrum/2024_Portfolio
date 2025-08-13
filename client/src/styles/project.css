@@ -51,9 +51,14 @@
     color: #c586c0;
 }
 
+.content__links a{
+    color: rgb(71, 156, 214)
+}
+
 .content_links a:hover{
     color: rgb(156, 220, 254);
 }
+
 
 
 @media screen and (max-width: 600px) {
