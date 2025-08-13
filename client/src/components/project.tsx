@@ -14,7 +14,7 @@ export default function Project({
         <img src={img}></img>
       </div>
       <div className="post__content">
-        <div className="content__time">
+        <div className="content__links">
           <span style={{ color: "#c9cbcc" }}>@</span>
           <span style={{ color: "#64c8ab" }}>links</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"("}</span>

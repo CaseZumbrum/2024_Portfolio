@@ -46,9 +46,13 @@
     max-width: 30vw;
 }
 
-.content__time {
+.content__links {
     font-size: .9rem;
     color: #c586c0;
+}
+
+.content_links a:hover{
+    color: rgb(156, 220, 254);
 }
 
 
