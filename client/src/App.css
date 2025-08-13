@@ -77,7 +77,11 @@
 }
 
 .me__links a {
-  color: #9cdcfe;
+  color: rgb(71, 156, 214);
+}
+
+.me__links a:hover {
+  color: rgb(156, 220, 254);
 }
 
 .intro__description {
