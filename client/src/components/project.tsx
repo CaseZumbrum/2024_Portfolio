@@ -15,10 +15,10 @@ export default function Project({ title, body, img, link, time }: project) {
       <div className="post__content">
         <div className="content__time">
           <span style={{ color: "#c9cbcc" }}>@</span>
-          <span style={{ color: "#64c8ab" }}>during</span>
+          <span style={{ color: "#64c8ab" }}>links</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"("}</span>
 
-          <span style={{ color: "#c7905b" }}>test</span>
+          <span style={{ color: "rgb(78, 201, 176)" }}>test</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{")"}</span>
         </div>
         <h2>
