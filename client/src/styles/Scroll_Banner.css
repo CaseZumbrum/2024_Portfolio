@@ -83,6 +83,24 @@
   .marquee--8 .marquee__item:nth-of-type(9) {
     --marquee-item-index: 9;
   }
+  .marquee--8 .marquee__item:nth-of-type(10) {
+    --marquee-item-index: 10;
+  }
+  .marquee--8 .marquee__item:nth-of-type(11) {
+    --marquee-item-index: 11;
+  }
+  .marquee--8 .marquee__item:nth-of-type(12) {
+    --marquee-item-index: 12;
+  }
+  .marquee--8 .marquee__item:nth-of-type(13) {
+    --marquee-item-index: 13;
+  }
+  .marquee--8 .marquee__item:nth-of-type(14) {
+    --marquee-item-index: 14;
+  }
+  .marquee--8 .marquee__item:nth-of-type(15) {
+    --marquee-item-index: 15;
+  }
   
   @keyframes go {
     to {  
