@@ -45,6 +45,11 @@
     max-width: 30vw;
 }
 
+.content__time {
+    font-size: .9rem;
+    color: #c586c0;
+}
+
 
 @media screen and (max-width: 600px) {
     .post__image img{
