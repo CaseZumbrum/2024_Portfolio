@@ -3,6 +3,7 @@ interface project {
   body: string;
   img: string;
   link?: string;
+  demo?: string;
   time: string;
 }
 

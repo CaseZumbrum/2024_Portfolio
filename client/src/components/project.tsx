@@ -1,6 +1,13 @@
 import "../styles/project.css";
 import project from "../types/project";
-export default function Project({ title, body, img, link, time }: project) {
+export default function Project({
+  title,
+  body,
+  img,
+  link,
+  demo,
+  time,
+}: project) {
   return (
     <div className="project">
       <div className="post__image">
@@ -12,7 +19,7 @@ export default function Project({ title, body, img, link, time }: project) {
           <span style={{ color: "#64c8ab" }}>links</span>
           <span style={{ color: "rgb(255, 181, 24)" }}>{"("}</span>
 
-          {link ? (
+          {link && (
             <a
               href={link}
               style={{ color: "rgb(71, 156, 214)" }}
@@ -20,7 +27,18 @@ export default function Project({ title, body, img, link, time }: project) {
             >
               Source
             </a>
-          ) : (
+          )}
+          {demo && link && <span style={{ color: "#c9cbcc" }}>{", "}</span>}
+          {demo && (
+            <a
+              href={demo}
+              style={{ color: "rgb(71, 156, 214)" }}
+              target="_blank"
+            >
+              Demo
+            </a>
+          )}
+          {!link && !demo && (
             <span style={{ color: "rgb(71, 156, 214)" }}>None</span>
           )}
           <span style={{ color: "rgb(255, 181, 24)" }}>{")"}</span>

@@ -41,6 +41,7 @@ class ProjectModel(BaseModel):
     img: str
     time: str
     link: Optional[str] = None
+    demo: Optional[str] = None
 
 
 class ProjectList(BaseModel):
