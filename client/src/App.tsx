@@ -150,7 +150,7 @@ function App() {
             </a>
             <a
               className="profileLink"
-              href="https://docs.google.com/document/d/e/2PACX-1vQf3ol_sz4RiDhLOnTSzGwEueJi6xVlc5IbHUyDlA8jf6JA-Jy5r9Z-_UrN24YGzBWAsDbimKMA_Zbs/pub"
+              href="https://docs.google.com/document/d/1MOTXNbck3oeZoYUyFrlqaqhfbghRPDtDoLcmGVzJUS0/edit?usp=sharing"
               target="_blank"
             >
               Resume
